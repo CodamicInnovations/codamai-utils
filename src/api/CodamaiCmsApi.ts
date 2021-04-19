@@ -48,7 +48,11 @@ export class CodamaiCmsApi {
       }
       xhr.onload = function () {
         if (this.status >= 200 && this.status < 300) {
-          resolve(xhr.response)
+          if (xhr.response && xhr.response.trim() !== '') {
+            resolve(JSON.parse(xhr.response).data)
+          } else {
+            resolve(null)
+          }
         } else {
           reject({
             status: this.status,
