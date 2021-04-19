@@ -44,7 +44,7 @@ export class CodamaiCmsApi {
       xhr.open(method, vm.baseUrl + url)
       xhr.setRequestHeader('Content-type', 'application/json;charset=UTF-8')
       if (sessionStorage.getItem('authToken')) {
-        xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem('authToken'))
+        xhr.setRequestHeader('Authorization', sessionStorage.getItem('authToken'))
       }
       xhr.onload = function () {
         if (this.status >= 200 && this.status < 300) {

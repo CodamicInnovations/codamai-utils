@@ -1,6 +1,6 @@
 {
   "name": "@codamic/codamai-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utils to connect your frontend to a codamai cms instance with TS or JS.",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "angular"
   ],
   "author": "Codamic Innovations GmbH - Daniel Mertins",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/CodamicInnovations/codamai-utils/issues"
   },
