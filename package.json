@@ -1,0 +1,31 @@
+{
+  "name": "@codamic/codamai-utils",
+  "version": "1.0.0",
+  "description": "Utils to connect your frontend to a codamai cms instance with TS or JS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodamicInnovations/codamai-utils.git"
+  },
+  "keywords": [
+    "util",
+    "cms",
+    "headless",
+    "codamai",
+    "vue",
+    "react",
+    "angular"
+  ],
+  "author": "Codamic Innovations GmbH - Daniel Mertins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodamicInnovations/codamai-utils/issues"
+  },
+  "homepage": "https://github.com/CodamicInnovations/codamai-utils#readme",
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  }
+}
