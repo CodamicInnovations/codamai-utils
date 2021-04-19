@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/CodamicInnovations/codamai-utils/issues"
   },
-  "homepage": "https://github.com/CodamicInnovations/codamai-utils#readme",
+  "homepage": "https://www.codamai-cms.com",
   "devDependencies": {
     "prettier": "^2.2.1"
   }
