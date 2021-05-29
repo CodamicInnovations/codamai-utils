@@ -1,6 +1,6 @@
 {
   "name": "@codamic/codamai-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "description": "Utils to connect your frontend to a codamai cms instance with TS or JS.",
   "main": "index.js",
