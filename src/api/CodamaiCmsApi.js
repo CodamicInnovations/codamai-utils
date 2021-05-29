@@ -21,7 +21,7 @@ export class CodamaiCmsApi {
      */
     constructor(baseUrl, group, model, modelPrototype) {
         let baseUrlTemp = baseUrl;
-        if (!baseUrl.endsWith('/')) {
+        if (baseUrl.slice(-1) !== '/') {
             baseUrlTemp += '/';
         }
         if (group) {
