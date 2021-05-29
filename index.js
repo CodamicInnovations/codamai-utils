@@ -1,13 +1,5 @@
-const { CodamaiCmsApi } = require('./src/api/CodamaiCmsApi')
-const { AbstractPattern } = require('./src/models/AbstractPattern')
-const { AbstractModel } = require('./src/models/AbstractModel')
-const { Logic } = require('./src/api/query/Logic')
-const { Filter } = require('./src/api/query/Filter')
-
-module.exports = {
-  CodamaiCmsApi,
-  Filter,
-  Logic,
-  AbstractModel,
-  AbstractPattern,
-}
+export { CodamaiCmsApi } from './src/api/CodamaiCmsApi'
+export { AbstractPattern } from './src/models/AbstractPattern'
+export { AbstractModel } from './src/models/AbstractModel'
+export { Logic } from './src/api/query/Logic'
+export { Filter } from './src/api/query/Filter'
