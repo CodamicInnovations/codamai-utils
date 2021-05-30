@@ -21,7 +21,7 @@ export class CodamaiCmsApi {
       baseUrlTemp += '/'
     }
     if (group) {
-      baseUrlTemp += group + '/'
+      baseUrlTemp += group
     }
     baseUrlTemp += model + '/'
     this.baseUrl = baseUrlTemp
@@ -49,7 +49,7 @@ export class CodamaiCmsApi {
       xhr.onload = function () {
         if (this.status >= 200 && this.status < 300) {
           if (xhr.response && xhr.response.trim() !== '') {
-            resolve(JSON.parse(xhr.response).data)
+            resolve(JSON.parse(xhr.response))
           } else {
             resolve(null)
           }
@@ -84,7 +84,8 @@ export class CodamaiCmsApi {
   async create(initial: AbstractModel, response) {
     initial = initial.toJsonObject()
     const item: any = await this.callService('create', 'POST', { data: initial, response: response })
-    return Object.create(this.modelPrototype, item)
+    const obj = Object.create(this.modelPrototype)
+    return Object.assign(obj, item)
   }
 
   /**
@@ -96,7 +97,8 @@ export class CodamaiCmsApi {
    */
   async update(object: AbstractModel, response) {
     const item: any = this.callService('update', 'POST', { data: object.toJsonObject(), response: response })
-    return Object.create(this.modelPrototype, item)
+    const obj = Object.create(this.modelPrototype)
+    return Object.assign(obj, item)
   }
 
   /**
@@ -108,7 +110,8 @@ export class CodamaiCmsApi {
    */
   async patch(object: AbstractModel, response) {
     const item: any = this.callService('update', 'PATCH', { data: object.toJsonObject(), response: response })
-    return Object.create(this.modelPrototype, item)
+    const obj = Object.create(this.modelPrototype)
+    return Object.assign(obj, item)
   }
 
   /**
@@ -120,7 +123,8 @@ export class CodamaiCmsApi {
    */
   async read(id, response) {
     const item: any = await this.callService('get/' + id, 'POST', { response: response })
-    return Object.create(this.modelPrototype, item)
+    const obj = Object.create(this.modelPrototype)
+    return Object.assign(obj, item)
   }
 
   /**
@@ -156,7 +160,7 @@ export class CodamaiCmsApi {
     if (searchValue && (searchValue instanceof Logic || searchValue instanceof Filter)) {
       postParam.logic = searchValue
     }
-    const data: { totalCount: number; result: AbstractModel[] } = await this.callService('list', 'POST', {
+    const data: { totalCount: number; result: any[] } = await this.callService('list', 'POST', {
       parameter: postParam,
       response: response,
     })
@@ -165,7 +169,8 @@ export class CodamaiCmsApi {
       result: [],
     }
     data.result.forEach((item: any) => {
-      retData.result.push(Object.create(this.modelPrototype, item))
+      const obj = Object.create(this.modelPrototype)
+      retData.result.push(Object.assign(obj, item))
     })
     return retData
   }

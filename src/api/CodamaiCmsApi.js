@@ -25,7 +25,7 @@ export class CodamaiCmsApi {
             baseUrlTemp += '/';
         }
         if (group) {
-            baseUrlTemp += group + '/';
+            baseUrlTemp += group;
         }
         baseUrlTemp += model + '/';
         this.baseUrl = baseUrlTemp;
@@ -52,7 +52,7 @@ export class CodamaiCmsApi {
             xhr.onload = function () {
                 if (this.status >= 200 && this.status < 300) {
                     if (xhr.response && xhr.response.trim() !== '') {
-                        resolve(JSON.parse(xhr.response).data);
+                        resolve(JSON.parse(xhr.response));
                     }
                     else {
                         resolve(null);
@@ -90,7 +90,8 @@ export class CodamaiCmsApi {
         return __awaiter(this, void 0, void 0, function* () {
             initial = initial.toJsonObject();
             const item = yield this.callService('create', 'POST', { data: initial, response: response });
-            return Object.create(this.modelPrototype, item);
+            const obj = Object.create(this.modelPrototype);
+            return Object.assign(obj, item);
         });
     }
     /**
@@ -103,7 +104,8 @@ export class CodamaiCmsApi {
     update(object, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const item = this.callService('update', 'POST', { data: object.toJsonObject(), response: response });
-            return Object.create(this.modelPrototype, item);
+            const obj = Object.create(this.modelPrototype);
+            return Object.assign(obj, item);
         });
     }
     /**
@@ -116,7 +118,8 @@ export class CodamaiCmsApi {
     patch(object, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const item = this.callService('update', 'PATCH', { data: object.toJsonObject(), response: response });
-            return Object.create(this.modelPrototype, item);
+            const obj = Object.create(this.modelPrototype);
+            return Object.assign(obj, item);
         });
     }
     /**
@@ -129,7 +132,8 @@ export class CodamaiCmsApi {
     read(id, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const item = yield this.callService('get/' + id, 'POST', { response: response });
-            return Object.create(this.modelPrototype, item);
+            const obj = Object.create(this.modelPrototype);
+            return Object.assign(obj, item);
         });
     }
     /**
@@ -168,7 +172,8 @@ export class CodamaiCmsApi {
                 result: [],
             };
             data.result.forEach((item) => {
-                retData.result.push(Object.create(this.modelPrototype, item));
+                const obj = Object.create(this.modelPrototype);
+                retData.result.push(Object.assign(obj, item));
             });
             return retData;
         });
