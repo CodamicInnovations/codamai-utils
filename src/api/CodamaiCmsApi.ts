@@ -96,7 +96,7 @@ export class CodamaiCmsApi {
    * @return {Promise}
    */
   async update(object: AbstractModel, response) {
-    const item: any = this.callService('update', 'POST', { data: object.toJsonObject(), response: response })
+    const item: any = await this.callService('update', 'POST', { data: object.toJsonObject(), response: response })
     const obj = Object.create(this.modelPrototype)
     return Object.assign(obj, item)
   }
@@ -109,7 +109,7 @@ export class CodamaiCmsApi {
    * @return {Promise}
    */
   async patch(object: AbstractModel, response) {
-    const item: any = this.callService('update', 'PATCH', { data: object.toJsonObject(), response: response })
+    const item: any = await this.callService('update', 'PATCH', { data: object.toJsonObject(), response: response })
     const obj = Object.create(this.modelPrototype)
     return Object.assign(obj, item)
   }
@@ -181,7 +181,7 @@ export class CodamaiCmsApi {
    * @param {string} id id for model to be deleted.
    * @return {Promise} returns no response
    */
-  delete(id) {
-    return this.callService('delete/' + id, 'DELETE', {})
+  async delete(id) {
+    return await this.callService('delete/' + id, 'DELETE', {})
   }
 }
