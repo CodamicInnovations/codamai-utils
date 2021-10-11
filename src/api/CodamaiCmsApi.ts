@@ -6,6 +6,7 @@ import { AbstractModel } from '../models/AbstractModel'
 export class CodamaiCmsApi {
   private readonly baseUrl: string
   private readonly modelPrototype: any
+  private readonly fetchBearer: Function
 
   /**
    * Create Frontend-API for CRUD Backend.
@@ -14,8 +15,9 @@ export class CodamaiCmsApi {
    * @param group group of model
    * @param model model name
    * @param modelPrototype prototype to transform data to models.
+   * @param fetchBearer get the bearer token for cms with this function
    */
-  constructor(baseUrl: string, group: string | null, model: string, modelPrototype: any) {
+  constructor(baseUrl: string, group: string | null, model: string, modelPrototype: any, fetchBearer: Function) {
     let baseUrlTemp = baseUrl
     if (baseUrl.slice(-1) !== '/') {
       baseUrlTemp += '/'
@@ -26,6 +28,7 @@ export class CodamaiCmsApi {
     baseUrlTemp += model + '/'
     this.baseUrl = baseUrlTemp
     this.modelPrototype = modelPrototype
+    this.fetchBearer = fetchBearer
   }
 
   /**
@@ -43,8 +46,8 @@ export class CodamaiCmsApi {
       let xhr = new XMLHttpRequest()
       xhr.open(method, vm.baseUrl + url)
       xhr.setRequestHeader('Content-type', 'application/json;charset=UTF-8')
-      if (sessionStorage.getItem('authToken')) {
-        xhr.setRequestHeader('Authorization', sessionStorage.getItem('authToken'))
+      if (vm.fetchBearer != null) {
+        xhr.setRequestHeader('Authorization', vm.fetchBearer())
       }
       xhr.onload = function () {
         if (this.status >= 200 && this.status < 300) {
