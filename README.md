@@ -4,7 +4,7 @@ Use this library to connect a frontend to a codamai headless CMS system easily.
 With a codamai headless CMS you get default CRUD-L (Create, Read, Update, Delete, List (Query)) Endpoints. This library 
 is an easy way to access your data.
 
-# Codamai Headless CMS Informations
+# Codamai Headless CMS Information
 
 Codamai CMS is a headless CMS for ERP systems. You can configure your own CMS with keycloak user management, ready to 
 use, docker ready CMS, stored in your own git repository. See https://www.codamai-cms.com for further details.

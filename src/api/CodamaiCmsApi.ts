@@ -85,10 +85,12 @@ export class CodamaiCmsApi {
    * @return {Promise}
    */
   async create(initial: AbstractModel, response) {
-    initial = initial.toJsonObject()
     const item: any = await this.callService('create', 'POST', { data: initial, response: response })
     const obj = Object.create(this.modelPrototype)
-    return Object.assign(obj, item)
+    return {
+      ...obj,
+      ...item,
+    }
   }
 
   /**
@@ -99,9 +101,12 @@ export class CodamaiCmsApi {
    * @return {Promise}
    */
   async update(object: AbstractModel, response) {
-    const item: any = await this.callService('update', 'POST', { data: object.toJsonObject(), response: response })
+    const item: any = await this.callService('update', 'POST', { data: object, response: response })
     const obj = Object.create(this.modelPrototype)
-    return Object.assign(obj, item)
+    return {
+      ...obj,
+      ...item,
+    }
   }
 
   /**
@@ -112,9 +117,12 @@ export class CodamaiCmsApi {
    * @return {Promise}
    */
   async patch(object: AbstractModel, response) {
-    const item: any = await this.callService('update', 'PATCH', { data: object.toJsonObject(), response: response })
+    const item: any = await this.callService('update', 'PATCH', { data: object, response: response })
     const obj = Object.create(this.modelPrototype)
-    return Object.assign(obj, item)
+    return {
+      ...obj,
+      ...item,
+    }
   }
 
   /**
@@ -127,7 +135,10 @@ export class CodamaiCmsApi {
   async read(id, response) {
     const item: any = await this.callService('get/' + id, 'POST', { response: response })
     const obj = Object.create(this.modelPrototype)
-    return Object.assign(obj, item)
+    return {
+      ...obj,
+      ...item,
+    }
   }
 
   /**
@@ -173,7 +184,10 @@ export class CodamaiCmsApi {
     }
     data.result.forEach((item: any) => {
       const obj = Object.create(this.modelPrototype)
-      retData.result.push(Object.assign(obj, item))
+      retData.result.push({
+        ...obj,
+        ...item,
+      })
     })
     return retData
   }
