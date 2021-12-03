@@ -149,7 +149,7 @@ export class CodamaiCmsApi {
    * @param {Logic|null} searchValue search by
    * @param {string} sortBy sort by field-key
    * @param {string} sortOrder sort order (DESC,ASC)
-   * @param {Object} response return data of objects.
+   * @param {Object} responseMap return data of objects.
    * @return {Promise}
    */
   async list(
@@ -158,8 +158,8 @@ export class CodamaiCmsApi {
     searchValue: Logic | Filter | null,
     sortBy: String,
     sortOrder: 'DESC' | 'ASC',
-    response: Object
-  ) {
+    responseMap: Object
+  ): Promise<{ _data: any[]; _meta: Object }> {
     const postParam = {
       page: currentPage,
       count: numberOfEntries,
@@ -174,22 +174,10 @@ export class CodamaiCmsApi {
     if (searchValue && (searchValue instanceof Logic || searchValue instanceof Filter)) {
       postParam.logic = searchValue
     }
-    const data: { totalCount: number; result: any[] } = await this.callService('list', 'POST', {
+    return await this.callService('list', 'POST', {
       parameter: postParam,
-      response: response,
+      response: responseMap,
     })
-    const retData = {
-      count: data.totalCount,
-      result: [],
-    }
-    data.result.forEach((item: any) => {
-      const obj = Object.create(this.modelPrototype)
-      retData.result.push({
-        ...obj,
-        ...item,
-      })
-    })
-    return retData
   }
 
   /**

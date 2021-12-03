@@ -40,7 +40,11 @@ const response = {
         street: true
     },
     animal: {
-        '*': true // all string, number, etc information of animal, but no lists or models.
+        '*': true, // all string, number, etc information of animal, but no lists or models.
+        'name': false // exclude name from response
+    },
+    connections: {
+        'db-*': true // all properties start with "db-" 
     }
 }
 ```
