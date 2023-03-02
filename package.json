@@ -1,11 +1,15 @@
 {
-  "name": "@codamic/codamai-utils",
-  "version": "1.0.11",
+  "name": "codamai-utils",
+  "version": "2.0.0",
   "type": "module",
   "description": "Utils to connect your frontend to a codamai cms instance with TS or JS.",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "release": "npm run lint && npm publish && git push --follow-tags"
   },
   "repository": {
     "type": "git",
@@ -25,8 +29,14 @@
   "bugs": {
     "url": "https://github.com/CodamicInnovations/codamai-utils/issues"
   },
-  "homepage": "https://www.codamai-cms.com",
+  "homepage": "https://www.codamic.com/products/codamai/automatic-software-development",
   "devDependencies": {
-    "prettier": "^2.2.1"
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "eslint": "^8.35.0",
+    "eslint-config-standard-with-typescript": "^34.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "typescript": "^4.9.5"
   }
 }
